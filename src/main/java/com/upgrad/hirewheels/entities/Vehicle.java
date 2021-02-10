@@ -21,7 +21,7 @@ public class Vehicle {
     private String color;
 
     @Column(name="availability_status",nullable = false)
-    private boolean availabilityStatus;
+    private int availabilityStatus;
 
     @Column(name="vehicle_image_url",length = 500,nullable = false)
     private String vehicleImageUrl;
@@ -81,11 +81,11 @@ public class Vehicle {
         this.color = color;
     }
 
-    public boolean isAvailabilityStatus() {
+    public int getAvailabilityStatus() {
         return availabilityStatus;
     }
 
-    public void setAvailabilityStatus(boolean availabilityStatus) {
+    public void setAvailabilityStatus(int availabilityStatus) {
         this.availabilityStatus = availabilityStatus;
     }
 
@@ -135,4 +135,5 @@ public class Vehicle {
                 ", vehicleSubcategory="+vehicleSubcategory+'\''+
                 "}";
     }
+
 }

@@ -61,7 +61,7 @@ public class Location {
         return locationAddress;
     }
 
-    public void setAddress(String locationAddress) {
+    public void setLocationAddress(String locationAddress) {
         this.locationAddress = locationAddress;
     }
 
