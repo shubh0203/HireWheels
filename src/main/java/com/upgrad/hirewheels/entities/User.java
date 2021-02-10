@@ -4,7 +4,7 @@ package com.upgrad.hirewheels.entities;
 import javax.persistence.*;
 
 @Entity
-public class users {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
