@@ -41,6 +41,24 @@ public class Vehicle {
     @OneToMany (mappedBy = "vehicle", fetch = FetchType.EAGER, cascade =  {CascadeType.ALL})
     private Set<Booking> bookings;
 
+    public Vehicle(int vehicleId, String vehicleModel, String vehicleNumber, String color,
+                   int availabilityStatus, String vehicleImageUrl, Fuel_type fuelType,
+                   Location location, Vehicle_subcategory vehicleSubcategory) {
+        this.vehicleId = vehicleId;
+        this.vehicleModel = vehicleModel;
+        this.vehicleNumber = vehicleNumber;
+        this.color = color;
+        this.availabilityStatus = availabilityStatus;
+        this.vehicleImageUrl = vehicleImageUrl;
+        this.fuelType = fuelType;
+        this.location = location;
+        this.vehicleSubcategory = vehicleSubcategory;
+
+    }
+
+    public Vehicle() {
+    }
+
     public Set<Booking> getBookings() {
         return bookings;
     }

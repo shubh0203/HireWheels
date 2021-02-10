@@ -38,6 +38,23 @@ public class User {
     @OneToMany (mappedBy = "user", fetch = FetchType.EAGER, cascade =  {CascadeType.ALL})
     private Set<Booking> bookings;
 
+    public User(int userId, String firstName, String lastName, String password, String emailId,
+                 String mobileNumber, float walletMoney, Role role) {
+        this.userid = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = emailId;
+        this.mobileNo = mobileNumber;
+        this.walletMoney = walletMoney;
+        this.role=role;
+
+
+    }
+
+    public User() {
+    }
+
     public Set<Booking> getBookings() {
         return bookings;
     }
@@ -79,12 +96,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getEmail() {

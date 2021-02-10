@@ -23,6 +23,16 @@ public class Fuel_type {
         return vehicles;
     }
 
+    public Fuel_type() {
+    }
+
+    public Fuel_type(int fuelTypeId, String fuelType) {
+        this.fuelTypeId = fuelTypeId;
+        this.fuelType = fuelType;
+
+    }
+
+
     public void setVehicles(Set<Vehicle> vehicles) {
         this.vehicles = vehicles;
     }
