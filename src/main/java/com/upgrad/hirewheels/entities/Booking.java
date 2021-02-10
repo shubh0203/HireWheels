@@ -1,16 +1,16 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
+import javax.xml.stream.Location;
 import java.time.LocalDate;
 
 
 @Entity
-public class booking {
-
+public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="booking_Id",length = 10)
+    @Column(name="booking_Id")
     private int bookingId;
 
     @Column(name="pickup_date",nullable = false)
@@ -22,8 +22,20 @@ public class booking {
     @Column(name="booking_date",nullable = false)
     private LocalDate bookingDate;
 
-    @Column(length=10,nullable = false)
-    private double amount;
+    @Column(precision=10,scale = 2,nullable = false)
+    private float amount;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id", nullable = false)
+    private Location location;
+
+    @ManyToOne
+    @JoinColumn(name = "vehicle_id", nullable = false)
+    private Vehicle vehicle;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public int getBookingId() {
         return bookingId;
@@ -61,8 +73,32 @@ public class booking {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -72,7 +108,10 @@ public class booking {
                 "pickup_date="+pickupDate+'\''+
                 "dropoff_date="+dropoffDate+'\''+
                 "booking_date="+bookingDate+'\''+
-                "amount="+amount+'\''+
+                "amount="+amount+'\'' +
+                ", location="+location+'\'' +
+                ", vehicle="+vehicle+'\'' +
+                ", user="+user+
                 "}";
     }
 }

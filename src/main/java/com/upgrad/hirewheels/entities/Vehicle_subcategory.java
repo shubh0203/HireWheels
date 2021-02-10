@@ -1,10 +1,11 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
-public class vehicle_subcategory {
+public class Vehicle_subcategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,6 +18,28 @@ public class vehicle_subcategory {
     @Column(name="price_per_day",length = 10,nullable = false)
     private double pricePerDay;
 
+    @ManyToOne
+    @JoinColumn(name = "vehicle_category_id", nullable = false)
+    private Vehicle_category vehicleCategory;
+
+    @OneToMany (mappedBy = "vehicleSubcategory", fetch = FetchType.EAGER,cascade =  {CascadeType.ALL})
+    private Set<Vehicle> vehicles;
+
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
+
+    public Vehicle_category getVehicleCategory() {
+        return vehicleCategory;
+    }
+
+    public void setVehicleCategory(Vehicle_category vehicleCategory) {
+        this.vehicleCategory = vehicleCategory;
+    }
 
     public int getVehicleSubcategoryId() {
         return vehicleSubcategoryId;
@@ -48,6 +71,7 @@ public class vehicle_subcategory {
                 "vehicle_subcategory_id="+vehicleSubcategoryId+'\''+
                 "vehicle_subcategory_name="+vehicleSubcategoryName+'\''+
                 "price_per_day"+pricePerDay+'\''+
+                ", vehicleCategory="+vehicleCategory+'\''+
                 "}";
     }
 }

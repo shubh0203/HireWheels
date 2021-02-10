@@ -1,7 +1,7 @@
 package com.upgrad.hirewheels.dao;
 
-import com.upgrad.hirewheels.entities.vehicle_subcategory;
+import com.upgrad.hirewheels.entities.Vehicle_subcategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface vehicle_subcategoryDao extends JpaRepository<vehicle_subcategory, Integer> {
+public interface vehicle_subcategoryDao extends JpaRepository<Vehicle_subcategory, Integer> {
 }

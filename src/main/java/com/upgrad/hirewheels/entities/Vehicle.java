@@ -1,13 +1,14 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-public class vehicle {
+public class Vehicle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "vehicle_Id",length = 10)
+    @Column(name = "vehicle_id",length = 10)
     private int vehicleId;
 
     @Column(name="vehicle_model",length = 50,nullable = false)
@@ -25,6 +26,28 @@ public class vehicle {
     @Column(name="vehicle_image_url",length = 500,nullable = false)
     private String vehicleImageUrl;
 
+    @ManyToOne
+    @JoinColumn(name = "fuel_type_id", nullable = false)
+    private Fuel_type fuelType;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id", nullable = false)
+    private Location location;
+
+    @ManyToOne
+    @JoinColumn(name = "vehicle_subcategory_id", nullable = false)
+    private Vehicle_subcategory vehicleSubcategory;
+
+    @OneToMany (mappedBy = "vehicle", fetch = FetchType.EAGER, cascade =  {CascadeType.ALL})
+    private Set<Booking> bookings;
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
 
     public int getVehicleId() {
         return vehicleId;
@@ -74,6 +97,30 @@ public class vehicle {
         this.vehicleImageUrl = vehicleImageUrl;
     }
 
+    public Fuel_type getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(Fuel_type fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Vehicle_subcategory getVehicleSubcategory() {
+        return vehicleSubcategory;
+    }
+
+    public void setVehicleSubcategory(Vehicle_subcategory vehicleSubcategory) {
+        this.vehicleSubcategory = vehicleSubcategory;
+    }
+
     @Override
     public String toString(){
         return "Vehicle{"+
@@ -83,6 +130,9 @@ public class vehicle {
                 "color"+color+'\''+
                 "Availability_Status"+availabilityStatus+'\''+
                 "Vehicle_Image_Url"+vehicleImageUrl+'\''+
+                ", fuelType="+fuelType+'\''+
+                ", location="+location+'\''+
+                ", vehicleSubcategory="+vehicleSubcategory+'\''+
                 "}";
     }
 }

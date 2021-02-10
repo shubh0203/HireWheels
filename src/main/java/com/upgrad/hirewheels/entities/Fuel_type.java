@@ -1,10 +1,11 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
-public class fuel_type {
+public class Fuel_type {
 
 
     @Id
@@ -14,6 +15,17 @@ public class fuel_type {
 
     @Column(name="fuel_type",length = 50,nullable = false,unique = true)
     private String fuelType;
+
+    @OneToMany (mappedBy = "fuel_Type", fetch = FetchType.EAGER, cascade =  {CascadeType.ALL})
+    private Set<Vehicle> vehicles;
+
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
 
     public int getFuelTypeId() {
         return fuelTypeId;
